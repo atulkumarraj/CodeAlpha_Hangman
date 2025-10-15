@@ -1,0 +1,20 @@
+# Hardcoded stock prices
+prices = {"AAPL": 180, "TSLA": 250, "GOOG": 140, "MSFT": 330}
+
+portfolio = {}
+while True:
+    name = input("Enter stock symbol (or 'done' to finish): ").upper()
+    if name == "DONE":
+        break
+    qty = int(input(f"Enter quantity of {name}: "))
+    portfolio[name] = qty
+
+total = 0
+for name, qty in portfolio.items():
+    if name in prices:
+        total += prices[name] * qty
+
+print(f"\nTotal Investment Value: ${total}")
+with open("portfolio.txt", "w") as f:
+    f.write(f"Total Investment Value: ${total}")
+print("Saved to portfolio.txt ✅")
